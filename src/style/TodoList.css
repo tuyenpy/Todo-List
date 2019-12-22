@@ -1,0 +1,24 @@
+.TodoList {
+    font: 30px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    display: flex;
+    color: #4d4d4d;
+    word-break: break-all;
+    padding: 15px 15px 15px 60px;
+    line-height: 1.2;
+    transition: color 0.4s;
+    border-bottom: 2px solid rgb(231, 231, 231);
+}
+
+.TodoList > img{
+    width: 30px;
+    height: 30px;
+}
+
+.TodoList > p {
+    margin: 0 0 0 10px;
+}
+
+.TodoList-isComplete > p {
+    text-decoration: line-through;
+}
