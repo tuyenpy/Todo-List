@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
+import TodoList from './components/TodoList';
+
 import './App.css';
-import TodoItem from './components/TodoItems'
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
       todoItems: [
-        { title: "Job 1", isComplete: true},
-        { title: "Job 2", isComplete: false},
-        { title: "Job 3", isComplete: false}
+        {item: "Thiết kế giao diện", isComplete: false},
+        {item: "Thiết kế thuật toán", isComplete:false},
+        {item: "Viết code", isComplete: false},
+        {item: "Check code", isComplete: false}
       ]
-    };
-    // this.onClickItem = this.onClickItem.bind(this);
+    }
   }
 
-  onClickItem(item){
-    return (
-      (event) => console.log(item)
-    )
+  onItemClick(index) {
+    let {todoItems} = this.state;
+    return () => {
+      this.setState({
+        todoItems: [
+          ...todoItems.slice(0,index),
+          {item: todoItems[index].item, isComplete:!todoItems[index].isComplete},
+          ...todoItems.slice(index+1)
+        ]
+      });
+    }
   }
 
   render() {
-    let { todoItems } = this.state;
+    let {todoItems} = this.state;
+    console.log(todoItems);
     return(
       <div className="App">
-        {
-          todoItems.length > 0 && todoItems.map( (item, index) =>
-           <TodoItem item={item} key={index} onClick={this.onClickItem(item)} /> )
+        {/*TodoList*/
+          todoItems.map((todoItem, index) => 
+          <TodoList key={index} todoItem={todoItem} onClick={this.onItemClick(index)}/>)
         }
       </div>
     )
